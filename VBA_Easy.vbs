@@ -1,4 +1,3 @@
-
 Sub AlphabeticalTest()
     For Each Ws In Worksheets
     
@@ -17,21 +16,20 @@ Sub AlphabeticalTest()
         For i = 2 To LastRow
             
             If Ws.Cells(i + 1, 1).Value <> Ws.Cells(i, 1).Value Then
-            Ticker = Ws.Cells(i, 1).Value
-            TotalVol = TotalVol + Ws.Cells(i, 7).Value
+                Ticker = Ws.Cells(i, 1).Value
+                TotalVol = TotalVol + Ws.Cells(i, 7).Value
+                
+                Ws.Range("J" & SummaryTable).Value = Ticker
+                Ws.Range("K" & SummaryTable).Value = TotalVol
+                
+                SummaryTable = SummaryTable + 1
+                TotalVol = 0
+                Else
             
-            Ws.Range("J" & SummaryTable).Value = Ticker
-            Ws.Range("K" & SummaryTable).Value = TotalVol
+                TotalVol = TotalVol + Ws.Cells(i, 7).Value
             
-            SummaryTable = SummaryTable + 1
-            
-        Else
-        
-            TotalVol = TotalVol + Ws.Cells(i, 7).Value
-            
-        End If
-    Next i
-Next Ws
+            End If
+        Next i
+    Next Ws
 
 End Sub
-
